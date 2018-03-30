@@ -12,6 +12,14 @@
 */
 
 Route::get('/', function () {
-    return App\Mahasiswa::with('programStudi')->get();
-    // return view('welcome');
-});
+    return view('landing');
+})->name('landing');
+
+Route::get('/login', 'Auth\LoginController@index')->name('login');
+
+Route::post('/login', 'Auth\LoginController@authenticate');
+
+Route::post('/logout', 'Auth\LoginController@authenticate')->name('logout');
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+

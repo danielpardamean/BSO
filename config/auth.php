@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'mahasiswa',
         'passwords' => 'users',
     ],
 
@@ -36,11 +36,14 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'mahasiswa' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'mahasiswa',
         ],
-
+        'pegawai' => [
+            'driver' => 'session',
+            'provider' => 'pegawai',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -65,9 +68,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'mahasiswa' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Mahasiswa::class,
+        ],
+        'pegawai' => [
+            'driver' => 'eloquent',
+            'model' => App\Pegawai::class,
         ],
 
         // 'users' => [

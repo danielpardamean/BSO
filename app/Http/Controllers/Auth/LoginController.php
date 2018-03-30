@@ -2,38 +2,37 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
+    protected $redirectTo = '/dashboard';
 
     /**
-     * Where to redirect users after login.
+     * Handle an authentication attempt.
      *
-     * @var string
+     * @return Response
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function authenticate(LoginRequest $request)
     {
-        $this->middleware('guest')->except('logout');
+        $credentials = $request->validated();
+        $username = $credentials['username'];
+        $password = $credentials['password'];
+        $guard = $credentials['loginType'] == 'Mahasiswa' ? 'mahasiswa' : 'pegawai';
+        $usernameKey = $credentials['loginType'] == 'Mahasiswa' ? 'nim' : 'nip';
+        $credentials = [$usernameKey => $username, 'password' => $password];
+        
+        if (Auth::guard($guard)->attempt($credentials)) {
+            return redirect()->route('dashboard');
+        }else{
+            return back()->with('error', 'Tidak ditemukan username dan password yang cocok.');
+        }
+    }
+
+    public function index ()
+    {
+        return view('login');
     }
 }
