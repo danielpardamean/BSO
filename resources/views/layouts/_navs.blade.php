@@ -20,7 +20,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" :aria-expanded="isShowing" @click.prevent="toggleDropdown">{{ Auth::user()->name }}</a>
             <div class="dropdown-menu" :class="{ show: isShowing }" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
             </div>
         </li>
         <script>

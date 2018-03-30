@@ -19,7 +19,8 @@ Route::get('/login', 'Auth\LoginController@index')->name('login');
 
 Route::post('/login', 'Auth\LoginController@authenticate');
 
-Route::post('/logout', 'Auth\LoginController@authenticate')->name('logout');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+Route::resource('bimbingan', 'BimbinganController');

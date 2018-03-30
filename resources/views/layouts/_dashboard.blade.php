@@ -18,9 +18,6 @@
         .cust-nav-link {
             border-radius: 0px !important;
         }
-        .c-table{
-            margin-top: 20px;
-        }
     </style>
         <div class="container-fluid h-100">
             <div class="row h-100">
@@ -32,7 +29,7 @@
                 </nav>
                 </div>
                 <div class="col-10">
-
+                    @yield('dash-content')
                 </div>
             </div>
         </div>

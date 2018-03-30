@@ -41,4 +41,12 @@ class Mahasiswa extends Model implements Authenticatable
     {
         return $this->hasOne('App\ProgramStudi', 'id', 'program_studi_id');
     }
+
+    /**
+     * Overrides the method to ignore the remember token.
+     */
+    public function setAttribute($key, $value)
+    {
+      return false;
+    }
 }

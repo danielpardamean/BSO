@@ -10,6 +10,11 @@ class LoginController extends Controller
 {
     protected $redirectTo = '/dashboard';
 
+    public function index ()
+    {
+        return view('login');
+    }
+
     /**
      * Handle an authentication attempt.
      *
@@ -31,8 +36,9 @@ class LoginController extends Controller
         }
     }
 
-    public function index ()
+    public function logout()
     {
-        return view('login');
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
