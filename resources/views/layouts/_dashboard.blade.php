@@ -24,8 +24,8 @@
                 <div class="col-2 h-100 nav-bg">
                 <nav class="nav flex-column nav-pills">
                     <a class="cust-nav-link nav-link" href="{{ route('bimbingan.index') }}">Bimbingan</a>
-                    <a class="cust-nav-link nav-link active" href="#">Mahasiswa</a>
-                    <a class="cust-nav-link nav-link" href="#">Pegawai</a>
+                    <a class="cust-nav-link nav-link" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
+                    <a class="cust-nav-link nav-link" href="{{ route('pegawai.index') }}">Pegawai</a>
                 </nav>
                 </div>
                 <div class="col-10">

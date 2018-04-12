@@ -9,6 +9,14 @@ use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 class Mahasiswa extends Model implements Authenticatable
 {
     use AuthenticableTrait;
+
+    protected $fillable = [
+        "nim",
+        "name",
+        "password",
+        "profile_picture",
+        "program_studi_id"
+    ];
     
     /**
      * The table associated with the model.
@@ -40,13 +48,5 @@ class Mahasiswa extends Model implements Authenticatable
     public function programStudi()
     {
         return $this->hasOne('App\ProgramStudi', 'id', 'program_studi_id');
-    }
-
-    /**
-     * Overrides the method to ignore the remember token.
-     */
-    public function setAttribute($key, $value)
-    {
-      return false;
     }
 }
