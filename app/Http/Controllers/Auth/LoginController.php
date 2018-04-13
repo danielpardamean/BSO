@@ -10,6 +10,11 @@ class LoginController extends Controller
 {
     protected $redirectTo = '/dashboard';
 
+    public function __construct ()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function index ()
     {
         return view('login');
@@ -38,7 +43,8 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        auth('mahasiswa')->logout();
+        auth('pegawai')->logout();
         return redirect()->route('login');
     }
 }
