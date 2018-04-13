@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Pegawai;
 use App\Type;
+use App\Pegawai;
 use Illuminate\Http\Request;
+use App\Http\Requests\PegawaiRequest;
 
 class PegawaiController extends Controller
 {
@@ -47,6 +48,7 @@ class PegawaiController extends Controller
         ]);
 
         $path = $request->file('profile_picture')->store('profile-pictures');
+
         Pegawai::create([
             "nip" => $credentials['nip'],
             "name" => $credentials['name'],
@@ -54,6 +56,8 @@ class PegawaiController extends Controller
             "id_type" => $credentials['type'],
             "profile_picture" => $path,
         ]);
+
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -73,9 +77,10 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pegawai $pegawai)
     {
-        //
+        $type =Type::all();
+        return view('pegawai.edit')->withPegawai($pegawai)->withTypes($type);
     }
 
     /**
@@ -85,9 +90,17 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PegawaiRequest $request, Pegawai $pegawai)
     {
-        //
+        $credentials = $request->validated();
+
+        $pegawai->nip = $credentials['nip'];
+        $pegawai->name = $credentials['name'];
+        $pegawai->id_type = $credentials['type'];
+
+        $pegawai->save();
+        
+        return redirect()->route('pegawai.edit', $pegawai->nip);
     }
 
     /**
@@ -96,8 +109,10 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pegawai $pegawai)
     {
-        //
+        $pegawai->delete();
+
+        return redirect()->route('pegawai.index');
     }
 }
