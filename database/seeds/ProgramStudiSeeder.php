@@ -14,5 +14,8 @@ class ProgramStudiSeeder extends Seeder
         App\ProgramStudi::create([
             'name' => 'Sistem Informasi'
         ]);
+        App\ProgramStudi::create([
+            'name' => 'Kimia'
+        ]);
     }
 }

@@ -18,7 +18,7 @@ class CreateMahasiswaTable extends Migration
             $table->primary('nim');
             $table->string('name', 40);
             $table->string('password', 60);
-            $table->string('profile_picture', 60);
+            $table->text('profile_picture');
             $table->integer('program_studi_id')->unsigned();
             $table->timestamps();
         });
