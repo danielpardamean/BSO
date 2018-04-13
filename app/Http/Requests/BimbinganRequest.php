@@ -24,10 +24,11 @@ class BimbinganRequest extends FormRequest
     public function rules()
     {
         return [
-            "nim" => "required",
+            "nim" => "sometimes|required",
             "title" => "required",
+            "tanggal_mulai_bimbingan" => "required",
             "pembimbing" => "present|required|array",
-            "dokumen" => "file|max:5000"
+            "dokumen" => "sometimes|file|max:5000"
         ];
     }
 }

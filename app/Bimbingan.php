@@ -10,6 +10,7 @@ class Bimbingan extends Model
     protected $fillable = [
         "nim",
         "title",
+        "tanggal_mulai_bimbingan",
         "document",
     ];
 

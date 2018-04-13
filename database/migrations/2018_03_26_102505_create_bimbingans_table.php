@@ -18,6 +18,7 @@ class CreateBimbingansTable extends Migration
             $table->string('nim', 9);
             $table->string('title', 80);
             $table->text('document');
+            $table->date('tanggal_mulai_bimbingan');
             $table->timestamps();
         });
     }

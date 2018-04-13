@@ -54,6 +54,7 @@ class BimbinganController extends Controller
         $bimbingan = Bimbingan::create([
             "nim" => $credentials["nim"],
             "title" => $credentials["title"],
+            "tanggal_mulai_bimbingan" => $credentials['tanggal_mulai_bimbingan'],
             "document" => $path,
         ]);
 
@@ -80,9 +81,13 @@ class BimbinganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bimbingan $bimbingan)
     {
-        //
+        $type = Type::where('name', 'dosen')->first();
+        $dosen = Pegawai::where('id_type', $type->id)->get();
+        $mahasiswa = Mahasiswa::all();
+
+        return view('bimbingan.edit')->withDosens($dosen)->withMahasiswas($mahasiswa)->withBimbingan($bimbingan);
     }
 
     /**
@@ -92,9 +97,25 @@ class BimbinganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BimbinganRequest $request, Bimbingan $bimbingan)
     {
-        //
+        if ($request->hasFile('dokumen')) {
+            $file = $request->dokumen;
+            $fileName = $bimbingan->nim . "." . $file->getClientOriginalExtension();
+
+            $path = $file->storeAs('dokumen-bimbingan', $fileName);
+
+            $bimbingan->document = $path;
+        }
+        $request = $request->validated();
+        $bimbingan->title = $request['title'];
+        $bimbingan->tanggal_mulai_bimbingan = $request['tanggal_mulai_bimbingan'];
+        $bimbingan->save();
+
+        $mahasiswa = Mahasiswa::find($bimbingan->nim);
+        $mahasiswa->pembimbing()->sync($request['pembimbing']);
+
+        return redirect()->route('bimbingan.edit', $bimbingan->id);    
     }
 
     /**
