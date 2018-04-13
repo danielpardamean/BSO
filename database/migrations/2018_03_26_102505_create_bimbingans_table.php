@@ -17,7 +17,7 @@ class CreateBimbingansTable extends Migration
             $table->increments('id');
             $table->string('nim', 9);
             $table->string('title', 80);
-            $table->string('document', 80);
+            $table->text('document');
             $table->timestamps();
         });
     }

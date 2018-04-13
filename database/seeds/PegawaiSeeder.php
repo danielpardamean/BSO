@@ -12,6 +12,6 @@ class PegawaiSeeder extends Seeder
     public function run()
     {
         App\Pegawai::truncate();
-        factory(App\Pegawai::class, 20)->create();
+        factory(App\Pegawai::class, 30)->create();
     }
 }

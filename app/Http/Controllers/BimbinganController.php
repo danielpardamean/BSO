@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Type;
+use App\Pegawai;
 use App\Bimbingan;
+use App\Mahasiswa;
+use Illuminate\Http\Request;
+use App\Http\Requests\BimbinganRequest;
 
 class BimbinganController extends Controller
 {
@@ -25,7 +29,11 @@ class BimbinganController extends Controller
      */
     public function create()
     {
-        //
+        $type = Type::where('name', 'dosen')->first();
+        $dosen = Pegawai::where('id_type', $type->id)->get();
+        $mahasiswa = Mahasiswa::all();
+
+        return view('bimbingan.create')->withDosens($dosen)->withMahasiswas($mahasiswa);
     }
 
     /**
@@ -34,9 +42,25 @@ class BimbinganController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BimbinganRequest $request)
     {
-        //
+        $credentials = $request->validated();
+
+        $file = $request->file('dokumen');
+        $fileName = $credentials['nim'] . "." . $file->getClientOriginalExtension();
+
+        $path = $file->storeAs('dokumen-bimbingan', $fileName);
+
+        $bimbingan = Bimbingan::create([
+            "nim" => $credentials["nim"],
+            "title" => $credentials["title"],
+            "document" => $path,
+        ]);
+
+        $mahasiswa = Mahasiswa::find($credentials['nim']);
+        dd($mahasiswa->pembimbing()->attach($credentials['pembimbing']));
+
+        return redirect()->route('bimbingan.index');
     }
 
     /**
@@ -79,8 +103,10 @@ class BimbinganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bimbingan $bimbingan)
     {
-        //
+        $bimbingan->delete();
+
+        return redirect()->route('bimbingan.index');    
     }
 }
