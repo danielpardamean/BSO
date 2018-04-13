@@ -37,15 +37,9 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PegawaiRequest $request)
     {
-        $credentials = $request->validate([
-            "nip" => "required",
-            "name" => "required",
-            "password" => "required|confirmed",
-            "type" => "required",
-            "profile_picture" => "file|max:5000"
-        ]);
+        $credentials = $request->validated();
 
         $path = $request->file('profile_picture')->store('profile-pictures');
 

@@ -23,10 +23,10 @@ class PegawaiRequest extends FormRequest
      */
     public function rules()
     {
-        $nip = $this->pegawai->nip;
-        
+        $nip = $this->get('nip');
+
         return [
-            "nip" => 'required|unique:pegawai,nip,' .$this->pegawai->nip. ',nip', 
+            "nip" => 'required|unique:pegawai,nip,' . $nip . ',nip', 
             "name" => "required",
             "password" => "sometimes|required|confirmed",
             "type" => "required",
