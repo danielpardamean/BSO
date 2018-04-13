@@ -24,9 +24,14 @@ class MahasiswaRequest extends FormRequest
     public function rules()
     {
         $nim = $this->get('nim');
+        if($this->method() === 'PUT' AND auth()->user()->nim == $nim){
+            $whereClause = ",$nim,nim";
+        }else{
+            $whereClause = '';
+        }
 
         return [
-            "nim" => 'required|unique:mahasiswa,nim,' . $nim . ',nim', 
+            "nim" => "required|unique:mahasiswa,nim" . $whereClause,
             "name" => "required",
             "password" => "sometimes|required|confirmed",
             "programStudi" => "required",
