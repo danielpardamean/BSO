@@ -11,6 +11,10 @@ use App\Http\Requests\BimbinganRequest;
 
 class BimbinganController extends Controller
 {
+    public function __construct ()
+    {
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -126,6 +130,9 @@ class BimbinganController extends Controller
      */
     public function destroy(Bimbingan $bimbingan)
     {
+        $mahasiswa = Mahasiswa::find($bimbingan->nim);
+        $mahasiswa->pembimbing()->detach();
+
         $bimbingan->delete();
 
         return redirect()->route('bimbingan.index');    

@@ -9,7 +9,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-    @if (!Auth::check())
+    @if (!auth('mahasiswa')->check() AND !auth('pegawai')->check())
         <li class="nav-item">
         <a class="nav-link" href="{{ route('login') }}">
             <button type="button" class="btn btn-primary">Login</button>
@@ -17,7 +17,7 @@
         </li>
     @else
         <li class="nav-item dropdown" id="profile" :class="{ show: isShowing }">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" :aria-expanded="isShowing" @click.prevent="toggleDropdown">{{ Auth::user()->name }}</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" :aria-expanded="isShowing" @click.prevent="toggleDropdown">{{ auth('mahasiswa')->check() ? auth('mahasiswa')->user()->name : auth('pegawai')->user()->name }}</a>
             <div class="dropdown-menu" :class="{ show: isShowing }" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>

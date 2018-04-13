@@ -28,9 +28,9 @@
             <td>{{ $bimbingan->title }}</td>
             <td>{{ $bimbingan->mahasiswa->name }}</td>
             <td>
-                <a href="{{ route('bimbingan.show', $bimbingan->id) }}">
+                {{-- <a href="{{ route('bimbingan.show', $bimbingan->id) }}">
                     <button class="btn btn-sm">View</button>
-                </a>
+                </a> --}}
                 <a href="{{ route('bimbingan.edit', $bimbingan->id) }}">
                     <button class="btn btn-warning btn-sm">Edit</button>
                 </a>

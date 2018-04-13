@@ -9,6 +9,11 @@ use App\Http\Requests\MahasiswaRequest;
 
 class MahasiswaController extends Controller
 {
+
+    public function __construct ()
+    {
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +32,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $programStudi =ProgramStudi::all();
+        $programStudi = ProgramStudi::all();
         return view('mahasiswa.create')->withProgramStudis($programStudi);
     }
 

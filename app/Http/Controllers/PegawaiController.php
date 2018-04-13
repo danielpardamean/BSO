@@ -9,6 +9,11 @@ use App\Http\Requests\PegawaiRequest;
 
 class PegawaiController extends Controller
 {
+    public function __construct ()
+    {
+        $this->middleware('loggedIn');
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *

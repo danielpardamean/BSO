@@ -39,5 +39,29 @@ class Pegawai extends Model implements Authenticatable
     {
       return $this->hasOne('App\Type', 'id', 'id_type');
     }
+
+    public function getRememberToken ()
+    {
+        return null;
+    }
+
+    public function setRememberToken($value)
+    {
+        return null;
+    }
+
+    public function getRememberTokenName ()
+    {
+        return null;
+    }
+
+    public function setAttribute ($key, $value)
+    {
+        $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+
+        if(!$isRememberTokenAttribute){
+            parent::setAttribute($key, $value);
+        }
+    }
     
 }
