@@ -23,12 +23,14 @@ class PegawaiRequest extends FormRequest
      */
     public function rules()
     {
+        $nip = $this->pegawai->nip;
+        
         return [
-            'nip' => 'required', 
-            'name' => 'required',
-            'password' => 'sometimes|required|confirmed',
-            'type' => 'required',
-            'profile_picture' => 'sometimes|file|max:5000'
+            "nip" => 'required|unique:pegawai,nip,' .$this->pegawai->nip. ',nip', 
+            "name" => "required",
+            "password" => "sometimes|required|confirmed",
+            "type" => "required",
+            "profile_picture" => "sometimes|file|max:5000"
         ];
     }
 }
