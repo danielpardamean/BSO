@@ -58,7 +58,7 @@ class BimbinganController extends Controller
         ]);
 
         $mahasiswa = Mahasiswa::find($credentials['nim']);
-        dd($mahasiswa->pembimbing()->attach($credentials['pembimbing']));
+        $mahasiswa->pembimbing()->attach($credentials['pembimbing']);
 
         return redirect()->route('bimbingan.index');
     }
