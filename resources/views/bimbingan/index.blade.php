@@ -33,7 +33,7 @@
                 <a class="btn btn-sm btn-primary" href="{{ route('bimbingan.show', $bimbingan->id) }}">
                     View
                 </a>
-                @if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe == 'admin')
+                @if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'admin')
                 <a class="btn btn-warning btn-sm" href="{{ route('bimbingan.edit', $bimbingan->id) }}">
                     Edit
                 </a>

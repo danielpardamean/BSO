@@ -14,6 +14,7 @@ class BimbinganController extends Controller
     public function __construct ()
     {
         $this->middleware('admin');
+        $this->middleware('otorisasiBimbingan')->only('show');
     }
     /**
      * Display a listing of the resource.

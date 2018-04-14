@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\IsAdminMiddleware::class,
         'loggedIn' => \App\Http\Middleware\LoggedInMiddleware::class,
+        'otorisasiBimbingan' => \App\Http\Middleware\OtorisasiBimbingan::class,
     ];
 }
