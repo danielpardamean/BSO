@@ -74,9 +74,9 @@ class BimbinganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Bimbingan $bimbingan)
     {
-        //
+        return view('bimbingan.show')->withBimbingan($bimbingan);
     }
 
     /**

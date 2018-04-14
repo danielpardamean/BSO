@@ -11,7 +11,8 @@ class PengajuanSeeder extends Seeder
      */
     public function run()
     {
-        App\Pengajuan::truncate();
-        factory(App\Pengajuan::class, 20)->create();
+        factory(App\Pengajuan::class, 20)->create()->each(function($pengajuan){
+            $pengajuan->koreksi()->saveMany(factory(App\Koreksi::class, 5)->make());
+        });
     }
 }

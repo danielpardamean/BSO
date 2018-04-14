@@ -27,4 +27,16 @@ Route::resource('bimbingan', 'BimbinganController');
 Route::resource('mahasiswa', 'MahasiswaController');
 Route::resource('pegawai', 'PegawaiController');
 
+Route::get('pengajuan/create/{id}', [
+    'as' => 'pengajuan.create',
+    'uses' => 'PengajuanController@create'
+]);
+Route::resource('pengajuan', 'PengajuanController', ['except' => 'create']);
+
+Route::get('koreksi/create/{id}', [
+    'as' => 'koreksi.create',
+    'uses' => 'KoreksiController@create'
+]);
+Route::resource('koreksi', 'KoreksiController', ['except' => 'create']);
+
 

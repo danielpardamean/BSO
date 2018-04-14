@@ -16,6 +16,8 @@ class Bimbingan extends Model
 
     protected $table = 'bimbingan';
 
+    protected $dates = ['created_at', 'updated_at'];
+
     public function mahasiswa()
     {
         return $this->belongsTo('App\Mahasiswa', 'nim', 'nim');
