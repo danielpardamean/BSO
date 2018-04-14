@@ -15,9 +15,9 @@ class IsAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!(auth('pegawai')->user()->tipe->name === 'admin')){
-            return redirect()->route('dashboard');
-        }
+        // if(!(auth('pegawai')->user()->tipe->name === 'admin')){
+        //     return redirect()->route('dashboard');
+        // }
         return $next($request);
     }
 }

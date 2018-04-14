@@ -9,9 +9,11 @@
         display: inline-block !important;
     }
 </style>
+@if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'admin')
 <a href="{{ route('bimbingan.create') }}">
     <button class="btn btn-primary mt-20">Create</button>
 </a>
+@endif
 <table class="table table-sm mt-20">
     <thead>
         <tr>
@@ -31,6 +33,7 @@
                 <a class="btn btn-sm btn-primary" href="{{ route('bimbingan.show', $bimbingan->id) }}">
                     View
                 </a>
+                @if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe == 'admin')
                 <a class="btn btn-warning btn-sm" href="{{ route('bimbingan.edit', $bimbingan->id) }}">
                     Edit
                 </a>
@@ -39,6 +42,7 @@
                     {{ method_field('DELETE') }}
                     <button class="btn btn-danger btn-sm">Delete</button>
                 </form>
+                @endif
             </td>
         </tr>
         @endforeach

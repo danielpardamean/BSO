@@ -22,7 +22,16 @@ class BimbinganController extends Controller
      */
     public function index()
     {
-        $bimbingan = Bimbingan::paginate(10);
+        
+        if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'dosen'){
+            $pegawai = auth('pegawai')->user();
+            $mahasiswaBimbingan = $pegawai->membimbing->pluck('nim')->toArray();
+            $bimbingan = Bimbingan::whereIn('nim', $mahasiswaBimbingan)->paginate(10);
+        }else if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'admin'){
+            $bimbingan = Bimbingan::paginate(10);
+        }else{
+            $bimbingan = Bimbingan::where('nim', auth('mahasiswa')->user()->nim)->paginate(10);
+        }
         return view('bimbingan.index')->withBimbingans($bimbingan);
     }
 
