@@ -46,7 +46,7 @@ class PegawaiController extends Controller
     {
         $credentials = $request->validated();
 
-        $path = $request->file('profile_picture')->store('profile-pictures');
+        $path = $request->file('profile_picture')->store('public/profile-pictures');
 
         Pegawai::create([
             "nip" => $credentials['nip'],

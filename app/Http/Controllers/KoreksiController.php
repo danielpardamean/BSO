@@ -23,7 +23,7 @@ class KoreksiController extends Controller
         $file = $request->file('dokumen');
         $fileName = Carbon::now()->toDateString() . "." . $file->getClientOriginalExtension();
 
-        $path = $file->storeAs('dokumen-koreksi', $fileName);
+        $path = $file->storeAs('public/dokumen-koreksi', $fileName);
 
         Koreksi::create([
             'information' => $credentials['information'],

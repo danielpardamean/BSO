@@ -19,6 +19,21 @@
             <small class="text-muted">Oleh {{ $bimbingan->mahasiswa->name }} - {{ $bimbingan->mahasiswa->nim }}</small>
         </h5>
    </div>
+   <style>
+        .dosen-avatar{
+            margin-top: 10px;
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+        }
+   </style>
+   <div class="row">
+        <div class="col">
+            @foreach ($bimbingan->mahasiswa->pembimbing as $pembimbing)
+                <img src="{{ Storage::url($pembimbing->profile_picture) }}" alt="" class="img-thumbnail rounded-circle dosen-avatar">
+            @endforeach
+        </div>
+   </div>
    @foreach($bimbingan->pengajuan as $pengajuan)
    <div class="row">
     <div class="col-8">

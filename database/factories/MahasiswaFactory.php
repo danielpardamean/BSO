@@ -8,7 +8,7 @@ $factory->define(App\Mahasiswa::class, function (Faker $faker) {
         'nim' => 'F1E' . $randomNIMSuffix,
         'name' => $faker->name,
         'password' => bcrypt('login'),
-        'profile_picture' => 'default.png',
-        'program_studi_id' => 1
+        'profile_picture' => 'public/profile-pictures/default.png',
+        'program_studi_id' => App\ProgramStudi::inRandomOrder()->first()->id
     ];
 });

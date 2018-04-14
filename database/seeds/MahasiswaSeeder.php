@@ -13,6 +13,8 @@ class MahasiswaSeeder extends Seeder
     {
         factory(App\Mahasiswa::class, 10)->create()->each(function ($mahasiswa){
             $mahasiswa->bimbingan()->save(factory(App\Bimbingan::class)->make());
+            $dosen = App\Pegawai::where('id_type', '2')->inRandomOrder()->limit(3)->get()->pluck('nip')->toArray();
+            $mahasiswa->pembimbing()->attach($dosen);
         });
     }
 }

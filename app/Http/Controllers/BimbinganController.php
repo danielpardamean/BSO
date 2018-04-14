@@ -23,7 +23,6 @@ class BimbinganController extends Controller
      */
     public function index()
     {
-        
         if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'dosen'){
             $pegawai = auth('pegawai')->user();
             $mahasiswaBimbingan = $pegawai->membimbing->pluck('nim')->toArray();
@@ -63,7 +62,7 @@ class BimbinganController extends Controller
         $file = $request->file('dokumen');
         $fileName = $credentials['nim'] . "." . $file->getClientOriginalExtension();
 
-        $path = $file->storeAs('dokumen-bimbingan', $fileName);
+        $path = $file->storeAs('public/dokumen-bimbingan', $fileName);
 
         $bimbingan = Bimbingan::create([
             "nim" => $credentials["nim"],
@@ -117,7 +116,7 @@ class BimbinganController extends Controller
             $file = $request->dokumen;
             $fileName = $bimbingan->nim . "." . $file->getClientOriginalExtension();
 
-            $path = $file->storeAs('dokumen-bimbingan', $fileName);
+            $path = $file->storeAs('public/dokumen-bimbingan', $fileName);
 
             $bimbingan->document = $path;
         }

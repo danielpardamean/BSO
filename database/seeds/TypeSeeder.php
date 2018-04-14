@@ -11,8 +11,6 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        App\Type::truncate();
-
         App\Type::create([
             'name' => 'admin'
         ]);

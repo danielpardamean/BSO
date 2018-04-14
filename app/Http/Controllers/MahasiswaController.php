@@ -46,7 +46,7 @@ class MahasiswaController extends Controller
     {
         $credentials = $request->validated();
 
-        $path = $request->file('profile_picture')->store('profile-pictures');
+        $path = $request->file('profile_picture')->store('public/profile-pictures');
 
         Mahasiswa::create([
             "nim" => $credentials['nim'],
