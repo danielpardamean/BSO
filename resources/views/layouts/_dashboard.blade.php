@@ -23,6 +23,7 @@
             <div class="row h-100">
                 <div class="col-2 h-100 nav-bg">
                 <nav class="nav flex-column nav-pills">
+                    <a class="cust-nav-link nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Home</a>
                     <a class="cust-nav-link nav-link {{ Request::is('bimbingan') ? 'active' : '' }}" href="{{ route('bimbingan.index') }}">Bimbingan</a>
                     @if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'admin')
                     <a class="cust-nav-link nav-link {{ Request::is('mahasiswa') ? 'active' : '' }}" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
@@ -30,7 +31,7 @@
                     @endif
                 </nav>
                 </div>
-                <div class="col-10">
+                <div class="col-10" style="overflow-y:scroll; padding-bottom: 20px">
                     @yield('dash-content')
                 </div>
             </div>

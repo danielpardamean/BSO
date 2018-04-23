@@ -32,28 +32,27 @@ Route::get('pengajuan/create/{id}', [
     'uses' => 'PengajuanController@create'
 ]);
 Route::resource('pengajuan', 'PengajuanController', ['except' => 'create']);
+Route::get('pengajuan/download/{url}', [
+    'as' => 'pengajuan.download',
+    'uses' => 'PengajuanController@download'
+]);
 
 Route::get('koreksi/create/{id}', [
     'as' => 'koreksi.create',
     'uses' => 'KoreksiController@create'
 ]);
 Route::resource('koreksi', 'KoreksiController', ['except' => 'create']);
+Route::get('koreksi/download/{url}', [
+    'as' => 'koreksi.download',
+    'uses' => 'KoreksiController@download'
+]);
 
-// Route::get('storage/{filename}', function ($filename)
-// {
-//     $path = storage_path('/' . $filename);
-
-//     if (!File::exists($path)) {
-//         abort(404);
-//     }
-
-//     $file = File::get($path);
-//     $type = File::mimeType($path);
-
-//     $response = Response::make($file, 200);
-//     $response->header("Content-Type", $type);
-
-//     return $response;
-// });
-
-
+Route::get('profile/password', [
+    'as' => 'profile.password',
+    'uses' => 'ProfileController@password'
+]);
+Route::post('profile/password', [
+    'as' => 'profile.password',
+    'uses' => 'ProfileController@storePassword'
+]);
+Route::resource('profile', 'ProfileController');

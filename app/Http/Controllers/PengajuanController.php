@@ -7,6 +7,7 @@ use App\Pengajuan;
 use Illuminate\Http\Request;
 use App\Http\Requests\PengajuanRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class PengajuanController extends Controller
 {
@@ -101,5 +102,12 @@ class PengajuanController extends Controller
         $pengajuan->delete();
 
         return redirect()->back();
+    }
+
+    public function download ($url)
+    {
+        $path = storage_path("app/public/dokumen-pengajuan/$url");
+
+        return response()->download($path);
     }
 }

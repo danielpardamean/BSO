@@ -6,6 +6,6 @@ $factory->define(App\Koreksi::class, function (Faker $faker) {
     return [
         'nip' => App\Pegawai::where('id_type', 1)->inRandomOrder()->first()->nip,
         'information' => $faker->text,
-        'document' => 'public/default.pdf',
+        'document' => 'public/dokumen-koreksi/default.pdf',
     ];
 });

@@ -41,4 +41,11 @@ class KoreksiController extends Controller
 
         return redirect()->back();
     }
+
+    public function download ($url)
+    {
+        $path = storage_path("app/public/dokumen-koreksi/$url");
+
+        return response()->download($path);
+    }
 }

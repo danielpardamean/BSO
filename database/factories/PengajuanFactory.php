@@ -6,6 +6,6 @@ $factory->define(App\Pengajuan::class, function (Faker $faker) {
     return [
         'bimbingan_id' => App\Bimbingan::inRandomOrder()->first()->id,
         'title' => $faker->unique()->sentence(),
-        'document' => 'public/default.pdf'
+        'document' => 'public/dokumen-pengajuan/default.pdf'
     ];
 });

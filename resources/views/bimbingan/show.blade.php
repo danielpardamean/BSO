@@ -48,6 +48,7 @@
    <div class="col-4 padding-col">
         <div class="container h-100">
             <div class="row h-100 align-items-end justify-content-end">
+                <a href="{{ route('pengajuan.download', explode('/', $pengajuan->document)[2]) }}" class="btn btn-sm btn-success btn-margin-5">Download</a>
                 <a href="{{ route('pengajuan.show', $pengajuan->id) }}" class="btn btn-sm btn-primary btn-margin-5">View</a>
                 <form action="{{ route('pengajuan.destroy', $pengajuan->id) }}" method="POST" class="form-display-inline">
                     {{ csrf_field() }}
