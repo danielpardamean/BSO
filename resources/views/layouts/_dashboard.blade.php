@@ -28,6 +28,7 @@
                     @if(auth('pegawai')->check() AND auth('pegawai')->user()->tipe->name == 'admin')
                     <a class="cust-nav-link nav-link {{ Request::is('mahasiswa') ? 'active' : '' }}" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
                     <a class="cust-nav-link nav-link {{ Request::is('pegawai') ? 'active' : '' }}" href="{{ route('pegawai.index') }}">Pegawai</a>
+                    <a class="cust-nav-link nav-link {{ Request::is('prodi') ? 'active' : '' }}" href="{{ route('prodi.index') }}">Program Studi</a>
                     @endif
                 </nav>
                 </div>

@@ -64,3 +64,5 @@ Route::post('profile/picture', [
     'uses' => 'ProfileController@storeProfilePicture'
 ]);
 Route::resource('profile', 'ProfileController');
+
+Route::resource('prodi', 'ProgramStudiController');
