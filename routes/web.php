@@ -55,4 +55,12 @@ Route::post('profile/password', [
     'as' => 'profile.password',
     'uses' => 'ProfileController@storePassword'
 ]);
+Route::get('profile/picture', [
+    'as' => 'profile.profile-picture',
+    'uses' => 'ProfileController@profilePicture'
+]);
+Route::post('profile/picture', [
+    'as' => 'profile.profile-picture',
+    'uses' => 'ProfileController@storeProfilePicture'
+]);
 Route::resource('profile', 'ProfileController');

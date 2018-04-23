@@ -120,6 +120,7 @@ class BimbinganController extends Controller
 
             $bimbingan->document = $path;
         }
+        
         $request = $request->validated();
         $bimbingan->title = $request['title'];
         $bimbingan->tanggal_mulai_bimbingan = $request['tanggal_mulai_bimbingan'];

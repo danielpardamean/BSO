@@ -20,7 +20,7 @@
             <h6>{{ $user->nip }}</h6>
         </div>
         <div class="text-center">
-            <a href="">
+            <a href="{{ route('profile.profile-picture') }}">
                 <button class="btn btn-primary btn-sm">
                     Ganti Foto Profil
                 </button>

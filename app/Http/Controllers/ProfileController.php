@@ -39,4 +39,30 @@ class ProfileController extends Controller
 
         return redirect()->back();
     }
+
+    public function profilePicture ()
+    {
+        return view('profile.profile-picture');
+    }
+
+    public function storeProfilePicture (Request $request)
+    {
+        if ($request->hasFile('profile')) {
+            $file = $request->profile;
+            if(auth('mahasiswa')->check()){
+                $user = auth('mahasiswa')->user();
+                $fileName = $user->nim . "." . $file->getClientOriginalExtension();
+            }else{
+                $user = auth('pegawai')->user();
+                $fileName = $user->nip . "." . $file->getClientOriginalExtension();
+            }
+
+            $path = $file->storeAs('public/profile-pictures', $fileName);
+
+            $user->profile_picture = $path;
+            $user->save();
+        }
+
+        return redirect()->back();
+    }
 }
