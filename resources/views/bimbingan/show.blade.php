@@ -9,28 +9,31 @@
         margin-top: 15px;
     }
 </style>
+@if(auth('mahasiswa')->check())
 <a class="btn btn-sm btn-primary margin-top" href="{{ route('pengajuan.create', $bimbingan->id) }}">
     Buat Pengajuan
 </a>
+@endif
 <div class="card margin-top">
    <div class="card-header">
         <h5>
-            {{ $bimbingan->title }}
-            <small class="text-muted">Oleh {{ $bimbingan->mahasiswa->name }} - {{ $bimbingan->mahasiswa->nim }}</small>
+            Judul Bimbingan : {{ $bimbingan->title }}
         </h5>
    </div>
    <style>
         .dosen-avatar{
-            margin-top: 10px;
-            margin-left: 10px;
+            margin: 10px;
             width: 40px;
             height: 40px;
         }
    </style>
    <div class="row">
         <div class="col">
+                <img src="{{ Storage::url($bimbingan->mahasiswa->profile_picture) }}" data-toggle="tooltip" data-placement="bottom" title ="{{ $bimbingan->mahasiswa->name }} ({{ $bimbingan->mahasiswa->nim }})" class="img-thumbnail rounded-circle dosen-avatar">
+        </div>
+        <div class="col d-flex justify-content-end">
             @foreach ($bimbingan->mahasiswa->pembimbing as $pembimbing)
-                <img src="{{ Storage::url($pembimbing->profile_picture) }}" alt="" class="img-thumbnail rounded-circle dosen-avatar">
+                <img src="{{ Storage::url($pembimbing->profile_picture) }}" data-toggle="tooltip" data-placement="bottom" title ="{{ $pembimbing->name }} ({{ $pembimbing->nip }})" class="img-thumbnail rounded-circle dosen-avatar">
             @endforeach
         </div>
    </div>

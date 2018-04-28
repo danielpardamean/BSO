@@ -16,9 +16,21 @@
         </a>
         </li>
     @else
+        <style>
+            .profile-avatar{
+                width: 40px;
+                height: 40px;
+            }
+        </style>
+        @php
+            $user = auth('mahasiswa')->check() ? auth('mahasiswa')->user()  : auth('pegawai')->user();
+            $username = auth('mahasiswa')->check() ? auth('mahasiswa')->user()->nim  : auth('pegawai')->user()->nip;
+            $tipe = auth('mahasiswa')->check() ? 'Mahasiswa' : auth('pegawai')->user()->tipe->name ;
+        @endphp
         <li class="nav-item dropdown" id="profile" :class="{ show: isShowing }">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" :aria-expanded="isShowing" @click.prevent="toggleDropdown">{{ auth('mahasiswa')->check() ? auth('mahasiswa')->user()->name : auth('pegawai')->user()->name . " - " . auth('pegawai')->user()->tipe->name }}</a>
-            <div class="dropdown-menu" :class="{ show: isShowing }" aria-labelledby="navbarDropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" :aria-expanded="isShowing" @click.prevent="toggleDropdown"><img src="{{ Storage::url($user->profile_picture) }}" data-toggle="tooltip" data-placement="bottom" title ="{{ $user->name }} ({{ $username }}) ({{ $tipe }})" class="img-thumbnail rounded-circle profile-avatar"></a>
+            
+            <div class="dropdown-menu dropdown-menu-right" :class="{ show: isShowing }" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('profile.index') }}">Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
             </div>

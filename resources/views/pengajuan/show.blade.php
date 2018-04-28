@@ -8,6 +8,11 @@
     .margin-top{
         margin-top: 15px;
     }
+    .dosen-avatar{
+        margin: 10px;
+        width: 40px;
+        height: 40px;
+    }
 </style>
 @if(!auth('mahasiswa')->check())
 <a class="btn btn-sm btn-primary margin-top" href="{{ route('koreksi.create', $pengajuan->id) }}">
@@ -17,7 +22,7 @@
 <div class="card margin-top">
    <div class="card-header">
         <h5>
-            {{ $pengajuan->title }}
+            Pengajuan : {{ $pengajuan->title }}
         </h5>
    </div>
    @foreach($pengajuan->koreksi as $koreksi)
@@ -28,6 +33,7 @@
                 <p class="mb-0">{{ $koreksi->information }}</p>
                 <footer class="blockquote-footer">Dibuat oleh {{ $koreksi->nip }} pada {{ $koreksi->created_at->diffForHumans() }}</footer>
             </blockquote>
+            <img src="{{ Storage::url($koreksi->dosen->profile_picture) }}" data-toggle="tooltip" data-placement="bottom" title ="{{ $koreksi->dosen->name }} ({{ $koreksi->dosen->nip }})" class="img-thumbnail rounded-circle dosen-avatar">
             <p class="card-text">Document : {{ $koreksi->document }}</p>
         </div>
    </div>

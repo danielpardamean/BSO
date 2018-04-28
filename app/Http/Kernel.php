@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\IsAdminMiddleware::class,
         'loggedIn' => \App\Http\Middleware\LoggedInMiddleware::class,
         'otorisasiBimbingan' => \App\Http\Middleware\OtorisasiBimbingan::class,
+        'otorisasiPengajuan' => \App\Http\Middleware\OtorisasiPengajuan::class,
     ];
 }

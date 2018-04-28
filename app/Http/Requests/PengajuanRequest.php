@@ -26,7 +26,7 @@ class PengajuanRequest extends FormRequest
         return [
             "id_bimbingan" => "sometimes|required",
             "title" => "required",
-            "dokumen" => "sometimes|file|max:5000"
+            "dokumen" => "required|file|max:5000"
         ];
     }
 }

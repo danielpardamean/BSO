@@ -18,4 +18,9 @@ class Koreksi extends Model
     * @var string
     */
    protected $table = 'koreksi';
+
+   public function dosen ()
+   {
+        return $this->hasOne('App\Pegawai', 'nip', 'nip'); 
+   }
 }

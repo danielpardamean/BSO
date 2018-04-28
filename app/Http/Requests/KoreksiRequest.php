@@ -26,7 +26,7 @@ class KoreksiRequest extends FormRequest
         return [
             "pengajuan_id" => "sometimes|required",
             "information" => "required",
-            "dokumen" => "sometimes|file|max:5000"
+            "dokumen" => "required|file|max:5000"
         ];
     }
 }

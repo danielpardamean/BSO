@@ -44,9 +44,12 @@ class MahasiswaController extends Controller
      */
     public function store(MahasiswaRequest $request)
     {
+        if($request->hasFile('profile_picture')){
+            $path = $request->file('profile_picture')->store('public/profile-pictures');
+        }else{
+            $path = "public/profile-pictures/default.png";
+        }
         $credentials = $request->validated();
-
-        $path = $request->file('profile_picture')->store('public/profile-pictures');
 
         Mahasiswa::create([
             "nim" => $credentials['nim'],

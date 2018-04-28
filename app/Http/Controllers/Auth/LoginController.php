@@ -33,7 +33,6 @@ class LoginController extends Controller
         $guard = $credentials['loginType'] == 'Mahasiswa' ? 'mahasiswa' : 'pegawai';
         $usernameKey = $credentials['loginType'] == 'Mahasiswa' ? 'nim' : 'nip';
         $credentials = [$usernameKey => $username, 'password' => $password];
-        
         if (Auth::guard($guard)->attempt($credentials)) {
             return redirect()->route('dashboard');
         }else{

@@ -13,8 +13,8 @@
          <div class="form-group">
             <label for="Keterangan">Keterangan</label>
             <input type="text" class="form-control" id="Keterangan" name="information">
-            @if($errors->has('infromation'))
-               <small class="form-text text-muted error">{{ $errors->first('infromation') }}</small>
+            @if($errors->has('information'))
+               <small class="form-text text-muted error">{{ $errors->first('information') }}</small>
             @endif
          </div>
          <div class="form-group">

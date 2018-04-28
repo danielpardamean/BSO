@@ -63,6 +63,6 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        return redirect()->back();
+        return redirect()->route('profile.index');
     }
 }

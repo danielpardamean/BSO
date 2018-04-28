@@ -13888,6 +13888,10 @@ window.Vue = __webpack_require__(36);
 //     el: '#app'
 // });
 
+$(window).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {

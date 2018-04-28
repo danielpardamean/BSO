@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PengajuanController extends Controller
 {
+    public function __construct ()
+    {
+        $this->middleware('admin');
+        $this->middleware('otorisasiPengajuan')->only('show');
+    }
     /**
      * Display a listing of the resource.
      *
