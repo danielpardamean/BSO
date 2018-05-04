@@ -14,7 +14,7 @@
         height: 40px;
     }
 </style>
-@if(!auth('mahasiswa')->check())
+@if(!auth('mahasiswa')->check() AND (auth('pegawai')->user()->nip == $pengajuan->nip))
 <a class="btn btn-sm btn-primary margin-top" href="{{ route('koreksi.create', $pengajuan->id) }}">
     Buat Koreksi
 </a>
@@ -31,7 +31,7 @@
         <div class="card-body">
             <blockquote class="blockquote text-left card-title">
                 <p class="mb-0">{{ $koreksi->information }}</p>
-                <footer class="blockquote-footer">Dibuat oleh {{ $koreksi->nip }} pada {{ $koreksi->created_at->diffForHumans() }}</footer>
+                <footer class="blockquote-footer">{{ $koreksi->created_at->diffForHumans() }}</footer>
             </blockquote>
             <img src="{{ Storage::url($koreksi->dosen->profile_picture) }}" data-toggle="tooltip" data-placement="bottom" title ="{{ $koreksi->dosen->name }} ({{ $koreksi->dosen->nip }})" class="img-thumbnail rounded-circle dosen-avatar">
             <p class="card-text">Document : {{ $koreksi->document }}</p>

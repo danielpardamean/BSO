@@ -12,7 +12,9 @@ class PengajuanSeeder extends Seeder
     public function run()
     {
         factory(App\Pengajuan::class, 20)->create()->each(function($pengajuan){
-            $pengajuan->koreksi()->saveMany(factory(App\Koreksi::class, 5)->make());
+            // $pengajuan->koreksi()->saveMany(
+            //     factory(App\Koreksi::class, 5)->create()
+            // );
         });
     }
 }

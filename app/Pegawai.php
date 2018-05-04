@@ -17,6 +17,10 @@ class Pegawai extends Model implements Authenticatable
         "profile_picture",
         "id_type"
     ];
+
+    protected $casts = [
+        'nip' => 'string',
+    ];
     
     /**
      * The table associated with the model.

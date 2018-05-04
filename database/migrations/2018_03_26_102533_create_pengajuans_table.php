@@ -18,6 +18,7 @@ class CreatePengajuansTable extends Migration
             $table->string('title', 80);
             $table->string('document', 80);
             $table->string('bimbingan_id');
+            $table->string('nip', 20);
             $table->timestamps();
         });
     }

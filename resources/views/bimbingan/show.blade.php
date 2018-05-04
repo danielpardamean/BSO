@@ -43,7 +43,12 @@
         <div class="card-body">
             <blockquote class="blockquote text-left card-title">
                 <p class="mb-0">{{ $pengajuan->title }}</p>
-                <footer class="blockquote-footer">Dibuat {{ $pengajuan->created_at->diffForHumans() }}</footer>
+                @if(auth('pegawai')->check() AND auth('pegawai')->user()->nip == $pengajuan->nip)
+                <footer class="blockquote-footer">Untuk Anda</footer>
+                @else
+                <footer class="blockquote-footer">Untuk {{ $pengajuan->dosen->name }} ({{ $pengajuan->dosen->nip }})</footer>
+                @endif
+                <footer class="blockquote-footer">{{ $pengajuan->created_at->diffForHumans() }}</footer>
             </blockquote>
             <p class="card-text">Document : {{ $pengajuan->document }}</p>
         </div>

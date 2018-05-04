@@ -9,7 +9,8 @@ class Pengajuan extends Model
     protected $fillable = [
         'title',
         'document',
-        'bimbingan_id'
+        'bimbingan_id',
+        'nip'
     ];
 
     protected $table = 'pengajuan';
@@ -22,5 +23,10 @@ class Pengajuan extends Model
     public function koreksi()
     {
         return $this->hasMany('App\Koreksi');
+    }
+
+    public function dosen ()
+    {
+      return $this->hasOne('App\Pegawai', 'nip', 'nip');
     }
 }

@@ -16,7 +16,7 @@ class CreatePembimbingTable extends Migration
         Schema::create('pembimbing', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nim', 10);
-            $table->string('nip', 10);
+            $table->string('nip', 20);
             $table->timestamps();
         });
     }
