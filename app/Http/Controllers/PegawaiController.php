@@ -99,7 +99,7 @@ class PegawaiController extends Controller
 
         $pegawai->save();
         
-        return redirect()->route('pegawai.edit', $pegawai->nip);
+        return redirect()->route('pegawai.index');
     }
 
     /**

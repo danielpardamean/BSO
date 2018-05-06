@@ -16,7 +16,7 @@
     <thead>
         <tr>
         <th scope="col">#</th>
-        <th scope="col">Nim</th>
+        <th scope="col">NIP</th>
         <th scope="col">Nama</th>
         <th scope="col">Program Studi</th>
         <th scope="col">Action</th>

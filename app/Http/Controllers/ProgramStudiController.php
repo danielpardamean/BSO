@@ -22,7 +22,7 @@ class ProgramStudiController extends Controller
         ProgramStudi::create([
             'name' => $request->get('name')
         ]);
-        return redirect()->back();
+        return redirect()->route('prodi.index');
     }
 
     public function edit(ProgramStudi $prodi)
