@@ -147,4 +147,11 @@ class BimbinganController extends Controller
 
         return redirect()->route('bimbingan.index');    
     }
+
+    public function download ($url)
+    {
+        $path = storage_path("app/public/dokumen-bimbingan/$url");
+
+        return response()->download($path);
+    }
 }

@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('landing');
-})->name('landing');
+})->name('landing')->middleware('guest');
 
 Route::get('/login', 'Auth\LoginController@index')->name('login');
 
@@ -24,6 +24,11 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('bimbingan', 'BimbinganController');
+Route::get('bimbingan/download/{url}', [
+    'as' => 'bimbingan.download',
+    'uses' => 'BimbinganController@download'
+]);
+
 Route::resource('mahasiswa', 'MahasiswaController');
 Route::resource('pegawai', 'PegawaiController');
 

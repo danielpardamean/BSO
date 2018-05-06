@@ -1,5 +1,14 @@
 @extends('layouts._dashboard')
 
 @section('dash-content')
-    <h3>Selamat Datang</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            @php
+                $user = auth('mahasiswa')->check() ? auth('mahasiswa')->user()  : auth('pegawai')->user();
+            @endphp
+                <h3>Selamat Datang {{ $user->name }}</h3>
+            </div>
+        </div>
+    </div>
 @endsection

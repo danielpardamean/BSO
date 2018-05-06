@@ -16,9 +16,12 @@
 @endif
 <div class="card margin-top">
    <div class="card-header">
-        <h5>
+        <h5 class="float-left">
             Judul Bimbingan : {{ $bimbingan->title }}
         </h5>
+        <a href="{{ route('bimbingan.download', explode('/', $bimbingan->document)[2]) }}">
+            <button  class="btn btn-sm btn-primary float-right">Download SK</button>
+        </a>
    </div>
    <style>
         .dosen-avatar{
