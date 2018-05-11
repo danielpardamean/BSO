@@ -59,11 +59,13 @@ class BimbinganController extends Controller
     {
         $credentials = $request->validated();
 
-        $file = $request->file('dokumen');
-        $fileName = $credentials['nim'] . "." . $file->getClientOriginalExtension();
-
-        $path = $file->storeAs('public/dokumen-bimbingan', $fileName);
-
+        if ($request->hasFile('dokumen')) {
+            $file = $request->file('dokumen');
+            $fileName = $credentials['nim'] . "." . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/dokumen-bimbingan', $fileName);
+        }else{
+            $path = '';
+        }
         $bimbingan = Bimbingan::create([
             "nim" => $credentials["nim"],
             "title" => $credentials["title"],
