@@ -12,7 +12,7 @@
         <input type="hidden" name="pengajuan_id" value="{{ $pengajuan->id }}">
          <div class="form-group">
             <label for="Keterangan">Keterangan</label>
-            <input type="text" class="form-control" id="Keterangan" name="information">
+            <textarea name="information" id="Keterangan" class="form-control"></textarea>
             @if($errors->has('information'))
                <small class="form-text text-muted error">{{ $errors->first('information') }}</small>
             @endif

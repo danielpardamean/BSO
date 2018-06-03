@@ -44,7 +44,8 @@ class BimbinganController extends Controller
     {
         $type = Type::where('name', 'dosen')->first();
         $dosen = Pegawai::where('id_type', $type->id)->get();
-        $mahasiswa = Mahasiswa::all();
+        $nim = Bimbingan::all()->pluck('nim')->toArray();
+        $mahasiswa = Mahasiswa::whereNotIn('nim', $nim)->get();
 
         return view('bimbingan.create')->withDosens($dosen)->withMahasiswas($mahasiswa);
     }

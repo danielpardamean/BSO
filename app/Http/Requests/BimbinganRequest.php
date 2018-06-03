@@ -28,7 +28,7 @@ class BimbinganRequest extends FormRequest
             "title" => "required",
             "tanggal_mulai_bimbingan" => "required",
             "pembimbing" => "present|required|array",
-            "dokumen" => "sometimes|file|max:5000"
+            "dokumen" => "required|file|max:5000"
         ];
     }
 }

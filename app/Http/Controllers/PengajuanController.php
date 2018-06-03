@@ -27,7 +27,7 @@ class PengajuanController extends Controller
         $credentials = $request->validated();
 
         $file = $request->file('dokumen');
-        $fileName = Carbon::now()->toDateString() . "." . $file->getClientOriginalExtension();
+        $fileName = $credentials['nip'] . "-" . Carbon::now()->toDateString() . "." . $file->getClientOriginalExtension();
 
         $path = $file->storeAs('public/dokumen-pengajuan', $fileName);
 
